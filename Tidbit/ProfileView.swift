@@ -1,6 +1,22 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    @State private var displayName = "juliana <3"
+    @State private var userName = "jules"
+    @State private var bio = "iOS dev | coffee lover <3"
+    
+    // Interest tag array. Will be creating many more later on.
+    @State private var selectedInterests = [
+        "Coffee",
+        "Gaming",
+        "Reading",
+        "Painting",
+        "Fall",
+        "Halloween",
+        "Watching movies"
+    ]
+    
     var body: some View {
         ZStack {
             // Adding the entire layout's background
@@ -13,7 +29,7 @@ struct ProfileView: View {
                     
                     HStack {
                         
-                        Text("userName")
+                        Text(userName)
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
                         
                         Spacer()
@@ -46,11 +62,12 @@ struct ProfileView: View {
                                         .frame(width: 90, height: 90)
                                 }
                                 .overlay{
-                                    Image(systemName: "person.crop.circle.fill")
+                                    Image("profilepic")
                                         .resizable()
-                                        .scaledToFit()
+                                        .scaledToFill()
                                         .frame(width: 88, height: 88)
                                         .foregroundStyle(.gray)
+                                        .clipShape(Circle())
                                     
                                 }
                             // Creating the plus button for adding to your story.
@@ -80,7 +97,7 @@ struct ProfileView: View {
                             VStack(alignment: .leading, spacing: 3) {
                                 HStack {
                                     // Creating the Profile Header Section which includes the display name, username, bio, and edit profile button.
-                                    Text("DisplayName")
+                                    Text(displayName)
                                         .font(.system(size: 14, weight: .semibold, design: .rounded))
                                         .foregroundColor(Color("biotext"))
                                     
@@ -102,86 +119,89 @@ struct ProfileView: View {
                                 }
                                 .padding(.trailing, 7)
                                 
-                                Text("@userName")
+                                Text("@\(userName)")
                                     .font(.system(size: 12, weight: .medium, design: .rounded))
                                     .foregroundColor(Color("profiletexts"))
                                 
                                 
                                 VStack {
-                                    Text("User bio. These are my interests. I am name! <3")
+                                    Text(bio)
                                         .font(.system(size: 12, weight: .medium, design: .rounded))
                                         .foregroundColor(Color("biotext"))
                                 }
                                 .padding(.vertical, 5)
+                                // Creating the Bits, Followers, and Following counts.
+                                HStack(spacing: 0) {
+                                    
+                                    VStack(spacing: 2) {
+                                        Text("265")
+                                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                            .foregroundStyle(.black)
+                                        
+                                        Text("Bits")
+                                            .font(.system(size: 12, weight: .light, design: .rounded))
+                                            .foregroundStyle(Color("profiletexts"))
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    
+                                    Divider()
+                                        .frame(height: 30)
+                                    
+                                    VStack(spacing: 2) {
+                                        Text("12.4K")
+                                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                            .foregroundStyle(.black)
+                                        
+                                        Text("Followers")
+                                            .font(.system(size: 12, weight: .light, design: .rounded))
+                                            .foregroundStyle(Color("profiletexts"))
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    
+                                    Divider()
+                                        .frame(height: 30)
+                                    
+                                    VStack(spacing: 2) {
+                                        Text("302")
+                                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                            .foregroundStyle(.black)
+                                        
+                                        Text("Following")
+                                            .font(.system(size: 12, weight: .light, design: .rounded))
+                                            .foregroundStyle(Color("profiletexts"))
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                }
+                                .frame(height: 40)
+                                .padding(.leading, -22)
                                 
-                                Spacer()
-                            }
+                            } //Closes profile-info VStack
                             .padding(.leading, 10)
+                            
                             Spacer()
-                            
-                            
-                            // Creating the Bits amount (how many posts they have), the Follower count, and the Following count.
-                            
-                            
-                        }
+                        } //Closes profile-picture + info HStack
                         .padding(.leading, 20)
-                        
-                        HStack(spacing: 0) {
-                            Spacer()
-                            
-                            // Creating the Bits amount (how many posts they have), the Follower count, and the Following count.
-                            HStack(spacing: 0) {
-                                
-                                VStack(spacing: 2) {
-                                    
-                                    Text("265")
-                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                        .foregroundStyle(.black)
-                                    
-                                    Text("Bits")
-                                        .font(.system(size: 12, weight: .light, design: .rounded))
-                                        .foregroundStyle(Color("profiletexts"))
-                                    
-                                }
-                                .frame(maxWidth: .infinity)
-                                
-                                Divider()
-                                    .frame(height: 30)
-                                
-                                VStack(spacing: 2) {
-                                    Text("12.4K")
-                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                        .foregroundStyle(.black)
-                                    
-                                    Text("Followers")
-                                        .font(.system(size: 12, weight: .light, design: .rounded))
-                                        .foregroundStyle(Color("profiletexts"))
-                                    
-                                }
-                                .frame(maxWidth: .infinity)
-                                
-                                Divider()
-                                    .frame(height: 30)
-                                
-                                VStack(spacing: 2) {
-                                    Text("302")
-                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                        .foregroundStyle(.black)
-                                    
-                                    Text("Following")
-                                        .font(.system(size: 12, weight: .light, design: .rounded))
-                                        .foregroundStyle(Color("profiletexts"))
-                                    
-                                }
-                                .frame(maxWidth: .infinity)
-                            }
-                            .frame(width: 300, height: 40)
-                        }
-                        .padding(.trailing, 11)
-                        .offset(y: -20)
-                    }
+                    } //Closes profile section VStack
                     
                     // Will be creating the interest tag section here.
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            ForEach(selectedInterests, id: \.self) { interest in
+                                
+                                // Tag Capsule
+                                Text(interest)
+                                    .font(.system(size: 11, weight: .medium, design: .rounded))
+                                    .foregroundColor(Color("biotext"))
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 7)
+                                    .background(
+                                        Capsule()
+                                            .fill(Color("buttonback"))
+                                    )
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                    }
                 }
             }
         }
