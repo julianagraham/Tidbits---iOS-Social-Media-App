@@ -1,10 +1,24 @@
 import SwiftUI
 
+// Creating Lately post display for image + when it was uploaded
+struct LatelyPost {
+    let imageName: String
+    let time: String
+}
+
+// Creating Currently Card blueprints
+struct CurrentlyItem {
+    let category: String
+    let value: String
+    let icon: String
+}
+
 struct ProfileView: View {
     
     @State private var displayName = "juliana <3"
     @State private var userName = "jules"
     @State private var bio = "iOS dev | coffee lover <3"
+    
     
     // Interest tag array. Will be creating many more later on.
     @State private var selectedInterests = [
@@ -15,6 +29,34 @@ struct ProfileView: View {
         "Fall",
         "Halloween",
         "Watching movies"
+    ]
+    
+    // defining lately posts
+    let latelyPosts = [
+        LatelyPost(imageName: "cafe", time: "1d ago"),
+        LatelyPost(imageName: "sunset", time: "2d ago"),
+        LatelyPost(imageName: "flowers", time: "3d ago"),
+        LatelyPost(imageName: "dog", time: "4d ago"),
+        LatelyPost(imageName: "lattes", time: "5d ago")
+    ]
+    
+    // defining currently items
+    let currentlyItems = [
+        CurrentlyItem(
+            category: "Listening to:",
+            value: "Olivia Rodrigo",
+            icon: "headphones"
+        ),
+        
+        CurrentlyItem(
+            category: "Drinking:",
+            value: "Iced Vanilla Latte",
+            icon: "cup.and.saucer.fill"
+        ),
+        CurrentlyItem(
+            category: "Playing:",
+            value: "Stardew Valley",
+            icon: "gamecontroller")
     ]
     
     var body: some View {
@@ -55,7 +97,7 @@ struct ProfileView: View {
                             //Creating the profile picture icon
                             Circle()
                                 .fill(Color("profilering"))
-                                .frame(width: 92, height: 92)
+                                .frame(width: 94, height: 94)
                                 .overlay{
                                     Circle()
                                         .fill(Color("backgroundmain"))
@@ -202,7 +244,88 @@ struct ProfileView: View {
                         }
                         .padding(.horizontal, 16)
                     }
-                }
+                    
+                        VStack(spacing: 5) {
+                            
+                            HStack {
+                                // Creating the lately scroll section, showing the latest posts
+                                Text("Lately ⟡")
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                
+                                Spacer()
+                                    
+                                Button("see all >") {
+                                }
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundColor(Color("profiletexts"))
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack {
+                                    ForEach(latelyPosts, id: \.imageName) { post in
+                                        
+                                        VStack {
+                                            Image(post.imageName)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 70, height: 80)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            
+                                            Text(post.time)
+                                                .font(.system(size: 11))
+                                                .foregroundStyle(Color("profiletexts"))
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal, 10)
+                            }
+                        }
+                    // Creating the Currently section, What user is currently doing.
+                    VStack(spacing: 8) {
+                        HStack{
+                            Text("Currently")
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                
+                            Spacer()
+                            
+                            Text("Edit")
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(Color("profiletexts"))
+                            }
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 10) {
+                                
+                                ForEach(currentlyItems, id: \.category) { item in
+                                    HStack {
+                                        Image(systemName: item.icon)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(maxWidth: 13, maxHeight: 13)
+                                        
+                                        VStack(alignment: .leading) {
+                                            Text(item.category)
+                                            Text(item.value)
+                                        }
+                                        .font(.system(size: 10, weight: .medium, design: .rounded))
+                                        .foregroundStyle(Color("biotext"))
+                                    }
+                                    .frame(width: 120, height: 50)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .fill(Color("buttonback"))
+                                    )
+                                    }
+                                }
+                            }
+                        
+                        }
+                    .padding(.horizontal, 10)
+                    .frame(maxWidth: .infinity)
+                    }
+                    .frame(maxWidth: .infinity)
+                        
             }
         }
     }

@@ -6,17 +6,20 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9203C0D530734237002DBC43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203C0D130734237002DBC43 /* ContentView.swift */; };
+		9203C0D630734237002DBC43 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203C0D330734237002DBC43 /* ProfileView.swift */; };
+		9203C0D730734237002DBC43 /* MyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203C0D230734237002DBC43 /* MyApp.swift */; };
+		9203C0D830734237002DBC43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9203C0D030734237002DBC43 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* Tidbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tidbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9203C0D030734237002DBC43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9203C0D130734237002DBC43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9203C0D230734237002DBC43 /* MyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApp.swift; sourceTree = "<group>"; };
+		9203C0D330734237002DBC43 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		000000000000000000000010 /* Tidbit */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Tidbit;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000130000000 /* Frameworks */ = {
@@ -30,7 +33,7 @@
 		000000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000010 /* Tidbit */,
+				9203C0D430734237002DBC43 /* TidBit */,
 				000000000000000000000020 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +44,17 @@
 				000000000000000000000120 /* Tidbit.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9203C0D430734237002DBC43 /* TidBit */ = {
+			isa = PBXGroup;
+			children = (
+				9203C0D030734237002DBC43 /* Assets.xcassets */,
+				9203C0D130734237002DBC43 /* ContentView.swift */,
+				9203C0D230734237002DBC43 /* MyApp.swift */,
+				9203C0D330734237002DBC43 /* ProfileView.swift */,
+			);
+			path = TidBit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,9 +69,6 @@
 				000000000000000140000000 /* Resources */,
 			);
 			buildRules = (
-			);
-			fileSystemSynchronizedGroups = (
-				000000000000000000000010 /* Tidbit */,
 			);
 			name = Tidbit;
 			productName = MyApp;
@@ -102,6 +113,7 @@
 		000000000000000140000000 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				9203C0D830734237002DBC43 /* Assets.xcassets in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
@@ -110,6 +122,9 @@
 		000000000000000120000000 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				9203C0D530734237002DBC43 /* ContentView.swift in Sources */,
+				9203C0D630734237002DBC43 /* ProfileView.swift in Sources */,
+				9203C0D730734237002DBC43 /* MyApp.swift in Sources */,
 			);
 		};
 /* End PBXSourcesBuildPhase section */
