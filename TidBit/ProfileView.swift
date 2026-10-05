@@ -18,6 +18,7 @@ struct ProfileView: View {
     @State private var displayName = "juliana <3"
     @State private var userName = "jules"
     @State private var bio = "iOS dev | coffee lover <3"
+    @State private var selectedTab = "Bits"
     
     
     // Interest tag array. Will be creating many more later on.
@@ -59,7 +60,34 @@ struct ProfileView: View {
             icon: "gamecontroller")
     ]
     
+    //defining bitImages - testing grid layout
+    let bitImages = [
+        "bit1",
+        "bit2",
+        "bit3",
+        "bit4",
+        "bit5",
+        "bit6",
+        "bit7",
+        "bit8",
+        "bit9"
+    ]
+    
     var body: some View {
+        
+        // defining columns
+        let columnOne = Array(bitImages.enumerated()
+            .filter { $0.offset % 3 == 0 }
+            .map { $0.element })
+        
+        let columnTwo = Array(bitImages.enumerated()
+            .filter { $0.offset % 3 == 1 }
+            .map { $0.element })
+        
+        let columnThree = Array(bitImages.enumerated()
+            .filter { $0.offset % 3 == 2 }
+            .map { $0.element })
+        
         ZStack {
             // Adding the entire layout's background
             Color("backgroundmain")
@@ -260,7 +288,7 @@ struct ProfileView: View {
                                 .foregroundColor(Color("profiletexts"))
                             }
                             .padding(.horizontal, 10)
-                            .padding(.vertical, 4)
+                            .padding(.vertical, 5)
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack {
@@ -282,6 +310,7 @@ struct ProfileView: View {
                                 .padding(.horizontal, 10)
                             }
                         }
+                        .padding(.vertical, 5)
                     // Creating the Currently section, What user is currently doing.
                     VStack(spacing: 8) {
                         HStack{
@@ -308,24 +337,112 @@ struct ProfileView: View {
                                             Text(item.category)
                                             Text(item.value)
                                         }
-                                        .font(.system(size: 10, weight: .medium, design: .rounded))
+                                        .font(.system(size: 11, weight: .medium, design: .rounded))
                                         .foregroundStyle(Color("biotext"))
                                     }
                                     .frame(width: 120, height: 50)
                                     .background(
                                         RoundedRectangle(cornerRadius: 12)
                                             .fill(Color("buttonback"))
-                                    )
+                                        )
                                     }
+                                
                                 }
                             }
                         
                         }
                     .padding(.horizontal, 10)
                     .frame(maxWidth: .infinity)
-                    }
-                    .frame(maxWidth: .infinity)
+                    
+                    // Creating the view tabs for Bits and Boards
+                    HStack {
                         
+                        //Bits button
+                        Button {
+                            selectedTab = "Bits"
+                        } label: {
+                            
+                            VStack(spacing: 6) {
+                                
+                                HStack(spacing: 5) {
+                                    Image(systemName: "square.grid.2x2")
+                                    Text("Bits")
+                                }
+                                .font(.system(size: 18, weight: .medium, design: .rounded))
+                                .foregroundStyle(Color("biotext"))
+                                
+                                Rectangle()
+                                    .fill(.black)
+                                    .frame(height: 2)
+                                    .opacity(selectedTab == "Bits" ? 1 : 0)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        
+                        //Boards button
+                        Button {
+                            selectedTab = "Boards"
+                        } label: {
+                            
+                            VStack(spacing: 5) {
+                                
+                                
+                                HStack(spacing: 5) {
+                                    Image(systemName: "rectangle.stack")
+                                    Text("Boards")
+                                }
+                                .font(.system(size: 18, weight: .medium, design: .rounded))
+                                .foregroundStyle(Color("biotext"))
+                                
+                                Rectangle()
+                                    .fill(.black)
+                                    .frame(height: 2)
+                                    .opacity(selectedTab == "Boards" ? 1 : 0)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        
+                    }
+                    
+                    if selectedTab == "Bits" {
+                        HStack(alignment: .top, spacing: 4) {
+                            
+                            // Column 1
+                            VStack(spacing: 4) {
+                                ForEach(columnOne, id: \.self) { imageName in
+                                Image(imageName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                }
+                            }
+                            
+                            // Column 2
+                            VStack(spacing: 4) {
+                                ForEach(columnTwo, id: \.self) { imageName in
+                                    Image(imageName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                }
+                            }
+                            
+                            // Column 3
+                            VStack(spacing: 4) {
+                                ForEach(columnThree, id: \.self) { imageName in
+                                    Image(imageName)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 5)
+                    }
+                }
+                .frame(maxWidth: .infinity)
             }
         }
     }
